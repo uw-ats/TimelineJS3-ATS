@@ -1,4 +1,4 @@
-import "../less/TL.Timeline.less"
+import "../less/themes/contrast-uw/TL.Theme.ContrastUW.less"
 export { Timeline }
 from "./timeline/Timeline"
 export { parseGoogleSpreadsheetURL }

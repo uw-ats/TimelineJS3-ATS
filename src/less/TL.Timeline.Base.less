@@ -59,7 +59,11 @@
 	height:100%;
 	font-size: 16px;
 	line-height: normal;
-	overflow:hidden;
+	/* ATS: only clipping the timeline horizontally
+		via overflow-x hidden so more of the  
+		focus indicator around the nav is visible
+	*/
+	overflow-x:hidden;
 	position: relative;
 	.user-select(none);
 	background-color:@color-background;
@@ -67,6 +71,7 @@
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
+	padding: 0 0 20px 0;
 
 	&.tl-timeline-embed {
 		box-sizing:border-box;

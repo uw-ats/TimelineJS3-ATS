@@ -20,7 +20,9 @@
 
     .tl-slidenav-content-container {
 		width:100px;
-		position:absolute;
+		/* ATS: prev/next button focus fix
+			- removed position absolute here as it is already
+			  defined in the parent button */
 	}
 	.tl-slidenav-title, .tl-slidenav-description {
 		//width:100%;
@@ -103,7 +105,9 @@
 .tl-slidenav-next {
 	text-align: right;
 	margin-right:10px;
-    right: 100px;
+	/* ATS: prev/next button focus fix
+	- button too far left, setting right to 0 */
+    right: 0;
 	.tl-slidenav-title, .tl-slidenav-description {
 		margin-left:20px;
 	}
@@ -162,7 +166,9 @@
 } 
 .tl-skinny {
 	.tl-slidenav-next {
-	    right: 32px;
+		/* ATS: prev/next button focus fix
+		- button too far left, setting right to 0 */
+	    right: 0;
 		.tl-slidenav-icon {
 			margin-left:32 - 24px;
 		}
