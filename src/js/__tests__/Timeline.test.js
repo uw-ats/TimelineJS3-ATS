@@ -47,7 +47,7 @@ const TEST_CONFIG = {
 beforeEach(() => {
     // Set up our document body
     document.body.innerHTML =
-        '<div id="timeline-embed"></div>';
+        '<section id="timeline-embed"></section>';
 })
 
 // Full timeline configuration is asynchronous, so these tests need
