@@ -111,7 +111,10 @@ export class StorySlider {
         slide.on('background_change', this._onBackgroundChange, this);
     }
 
-    _createSlide(d, title_slide, n) {
+    _createSlide(d, title_slide, n, i = this._slides.length) {
+        // length of slides array plus the title slide
+        d.slides_length = this.data.events.length + 1;
+        d.slide_position = i;
         var slide = new Slide(d, this.options, title_slide, this.getLanguage());
         this._addSlide(slide);
         if (n < 0) {

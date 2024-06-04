@@ -440,8 +440,6 @@ class Timeline {
 
         // Create StorySlider
         this._storyslider = new StorySlider(this._el.storyslider, this.config, this.options, this.language);
-        this._el.storyslider.setAttribute('role', 'group');
-        this._el.storyslider.setAttribute('aria-label', this._('aria_label_timeline_content'));
         this._storyslider.on('loaded', this._onStorySliderLoaded, this);
         this._storyslider.init();
 

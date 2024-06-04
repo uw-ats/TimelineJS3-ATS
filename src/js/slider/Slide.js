@@ -61,7 +61,9 @@ export class Slide {
             location: null,
             text: null,
             media: null,
-            autolink: true
+            autolink: true,
+            slides_length:0,
+            slide_position:0
         };
 
         // Options
@@ -242,7 +244,12 @@ export class Slide {
     _initLayout() {
         // Create Layout
         this._el.container = DOM.create("div", "tl-slide");
-
+        this._el.container.setAttribute("aria-roledescription", "slide");
+        this._el.container.setAttribute("role", "tabpanel");
+        let totalSlides = this.data.slides_length;
+        let slidePosition = this.data.slide_position + 1;
+        let ariaLabel= slidePosition + " of " + totalSlides;
+        this._el.container.setAttribute("aria-label", ariaLabel);
         if (this.has.title) {
             this._el.container.className = "tl-slide tl-slide-titleslide";
         }

@@ -40,10 +40,6 @@ export class TimeNav {
         } else {
             this._el.container = DOM.get(elem);
         }
-        this._el.container.setAttribute('tabindex', '0');
-
-        // 'application' role supports predictable control of keyboard input in a complex component
-        this._el.container.setAttribute('role', 'application');
         this._el.container.setAttribute('aria-label', this._('aria_label_timeline_navigation'));
         this._el.container.setAttribute('aria-description',
             'Navigate between markers with arrow keys. Press "Home" for the first and "End" for the last markers'
