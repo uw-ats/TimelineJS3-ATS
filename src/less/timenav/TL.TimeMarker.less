@@ -2,7 +2,12 @@
 ================================================== */
 
 .tl-timemarker {
-	height:100%;
+
+	// removing browser button styles
+	background: none;
+	border: none;
+	text-align:inherit;
+	
 	position:absolute;
 	top:0;
 	left:0;
@@ -149,7 +154,7 @@
 				overflow:hidden;
 				position: relative;
 				
-				h2.tl-headline, h2.tl-headline p {
+				span.tl-headline, span.tl-headline p {
 					display: -webkit-box;
 					
 					line-clamp: 2;
@@ -213,7 +218,7 @@
 			
 			&.tl-timemarker-content-small {
 				.tl-timemarker-text {
-					h2.tl-headline {
+					span.tl-headline {
 						display:block;
 						white-space:nowrap; 
 						text-overflow: ellipsis;
@@ -266,7 +271,7 @@
 				//min-width:100px;
 				.tl-timemarker-content {
 					.tl-timemarker-text {
-						h2.tl-headline {
+						span.tl-headline {
 							//line-clamp:3 !important;
 							//-webkit-line-clamp:3 !important;
 							//white-space: normal !important;
@@ -279,7 +284,7 @@
 			.tl-timemarker-content {
 				
 				.tl-timemarker-text {
-					h2.tl-headline {
+					span.tl-headline {
 						color:@marker-selected-text-color;
 						&.tl-headline-fadeout {
 							&:after {
@@ -310,7 +315,7 @@
 			.tl-timemarker-content-container {
 				.tl-timemarker-content {
 					.tl-timemarker-text {
-						h2.tl-headline {
+						span.tl-headline {
 							&.tl-headline-fadeout {
 								&:after {
 									//.marker-text-fade(@color-theme,80%);
@@ -383,7 +388,7 @@
 			box-shadow: 1px 1px 3px fadeout(@marker-dot-color, 50%);
 			.tl-timemarker-content {
 				.tl-timemarker-text {
-					h2.tl-headline {
+					span.tl-headline {
 						//color:@marker-selected-text-color;
 						color:@color-foreground; 
 						&.tl-headline-fadeout {

@@ -252,9 +252,8 @@ export class Slide {
         this._el.container.setAttribute("aria-label", ariaLabel);
         if (this.has.title) {
             this._el.container.className = "tl-slide tl-slide-titleslide";
-        }
-
-        if (this.data.unique_id) {
+            this._el.container.id = "title-slide"
+        } else if (this.data.unique_id) {
             this._el.container.id = this.data.unique_id;
         }
         this._el.scroll_container = DOM.create("div", "tl-slide-scrollable-container", this._el.container);

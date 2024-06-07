@@ -79,9 +79,9 @@ test("test remove", async() => {
     })
 
     expect(timeline.config).toBeDefined()
-    expect(timeline.config.events.length).toBe(2)
+    expect(timeline.config.events.length).toBe(3)
     expect(timeline.config.event_dict['vimeo']).toBeTruthy()
     timeline.removeId('vimeo')
-    expect(timeline.config.events.length).toBe(1)
+    expect(timeline.config.events.length).toBe(2)
     expect(timeline.config.event_dict['vimeo']).toBeFalsy()
 })

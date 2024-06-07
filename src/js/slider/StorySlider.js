@@ -47,7 +47,7 @@ export class StorySlider {
         this._message;
 
         // Current Slide
-        this.current_id = '';
+        this.current_id = "";
 
         // Data Object
         this.data = {};
@@ -112,8 +112,12 @@ export class StorySlider {
     }
 
     _createSlide(d, title_slide, n, i = this._slides.length) {
-        // length of slides array plus the title slide
-        d.slides_length = this.data.events.length + 1;
+        // don't create an extra slide for the event that creates a marker
+        // for the existing title slide
+        if (!d.unique_id) {
+            return;
+        }
+        d.slides_length = this.data.events.length;
         d.slide_position = i;
         var slide = new Slide(d, this.options, title_slide, this.getLanguage());
         this._addSlide(slide);
@@ -134,9 +138,14 @@ export class StorySlider {
     }
 
     _removeSlide(slide) {
-        slide.removeFrom(this._el.slider_item_container);
-        slide.off('added', this._onSlideRemoved, this);
-        slide.off('background_change', this._onBackgroundChange);
+        // title slide added to marker events earlier
+        // but the placeholder slide itself is not created 
+        // so verifying slide is defined before removing
+        if (slide) {
+            slide.removeFrom(this._el.slider_item_container);
+            slide.off('added', this._onSlideRemoved, this);
+            slide.off('background_change', this._onBackgroundChange);
+        }
     }
 
     _destroySlide(n) {
