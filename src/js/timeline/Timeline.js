@@ -193,7 +193,7 @@ class Timeline {
 
         // Apply base class to container
         this._el.container.classList.add('tl-timeline');
-        this._el.container.setAttribute('tabindex', '0');
+        this._el.container.setAttribute('tabindex', '-1');
         this._el.container.setAttribute('role', 'region');
         this._el.container.setAttribute('aria-label', this._('aria_label_timeline'));
 
