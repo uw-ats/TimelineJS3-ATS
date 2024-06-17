@@ -1,4 +1,4 @@
-import { classMixin, mergeData, findNextGreater, findNextLesser, isEven, findArrayNumberByUniqueID, trace } from "../core/Util"
+import { classMixin, mergeData, findNextGreater, findNextLesser, isEven, findArrayNumberByUniqueID, trace, unique_ID } from "../core/Util"
 import Events from "../core/Events"
 import { DOMMixins } from "../dom/DOMMixins"
 import { DOMEvent } from "../dom/DOMEvent"
@@ -40,10 +40,6 @@ export class TimeNav {
         } else {
             this._el.container = DOM.get(elem);
         }
-        this._el.container.setAttribute('tabindex', '0');
-
-        // 'application' role supports predictable control of keyboard input in a complex component
-        this._el.container.setAttribute('role', 'application');
         this._el.container.setAttribute('aria-label', this._('aria_label_timeline_navigation'));
         this._el.container.setAttribute('aria-description',
             'Navigate between markers with arrow keys. Press "Home" for the first and "End" for the last markers'
@@ -514,7 +510,7 @@ export class TimeNav {
         if ((n + 1) < this._markers.length) {
             this.focusOn(n + 1);
         } else {
-            this.focusOn(n);
+            this.focusOn(0);
         }
     }
 
@@ -523,7 +519,7 @@ export class TimeNav {
         if (n - 1 >= 0) {
             this.focusOn(n - 1);
         } else {
-            this.focusOn(n);
+            this.focusOn(this._markers.length - 1);
         }
     }
 
@@ -775,6 +771,8 @@ export class TimeNav {
         this._el.marker_container_mask = DOM.create('div', 'tl-timenav-container-mask', this._el.slider);
         this._el.marker_container = DOM.create('div', 'tl-timenav-container', this._el.marker_container_mask);
         this._el.marker_item_container = DOM.create('div', 'tl-timenav-item-container', this._el.marker_container);
+        this._el.marker_item_container.setAttribute('role', 'tablist');
+        this._el.marker_item_container.setAttribute('aria-label', 'Timeline slides');
         this._el.timeaxis = DOM.create('div', 'tl-timeaxis', this._el.slider);
         this._el.timeaxis_background = DOM.create('div', 'tl-timeaxis-background', this._el.container);
 
@@ -802,6 +800,17 @@ export class TimeNav {
     }
 
     _initData() {
+        // Add an event so marker can be created for the existing title slide
+        this.config.events.unshift({
+            start_date: this.config.events[0].start_date,
+            end_date: this.config.events[0].start_date,
+            text: {
+                headline: this.config.title.text.headline
+            },
+            type: 'title',
+        });
+
+
         // Create Markers and then add them
         this._createMarkers(this.config.events);
 

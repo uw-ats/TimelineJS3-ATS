@@ -96,6 +96,9 @@ export class Text {
                 headline_class = "tl-headline tl-headline-title";
             }
             this._el.headline = DOM.create("h2", headline_class, this._el.headline_container);
+			if (this.options.title) {
+				this._el.headline.id = "tl-title"
+			}
             this._el.headline.innerHTML		= this.data.headline;
         }
 

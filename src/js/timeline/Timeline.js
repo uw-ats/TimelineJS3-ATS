@@ -193,9 +193,8 @@ class Timeline {
 
         // Apply base class to container
         this._el.container.classList.add('tl-timeline');
-        this._el.container.setAttribute('tabindex', '-1');
-        this._el.container.setAttribute('role', 'region');
-        this._el.container.setAttribute('aria-label', this._('aria_label_timeline'));
+        this._el.container.setAttribute('aria-roledescription', 'carousel');
+        this._el.container.setAttribute('aria-labelledby', 'tl-title');
 
         if (this.options.is_embed) {
             this._el.container.classList.add('tl-timeline-embed');
@@ -441,8 +440,6 @@ class Timeline {
 
         // Create StorySlider
         this._storyslider = new StorySlider(this._el.storyslider, this.config, this.options, this.language);
-        this._el.storyslider.setAttribute('role', 'group');
-        this._el.storyslider.setAttribute('aria-label', this._('aria_label_timeline_content'));
         this._storyslider.on('loaded', this._onStorySliderLoaded, this);
         this._storyslider.init();
 

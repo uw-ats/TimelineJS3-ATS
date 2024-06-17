@@ -100,15 +100,23 @@ export class TimeMarker {
 
 	setActive(is_active) {
 		this.active = is_active;
-
+		// removing tabindex when active as already inherent in button
 		if (this.active && this.has_end_date) {
 			this._el.container.className = 'tl-timemarker tl-timemarker-with-end tl-timemarker-active';
+			this._el.container.setAttribute("aria-selected", "true")
+			this._el.container.removeAttribute("tabindex")
 		} else if (this.active) {
 			this._el.container.className = 'tl-timemarker tl-timemarker-active';
+			this._el.container.setAttribute("aria-selected", "true")
+			this._el.container.removeAttribute("tabindex")
 		} else if (this.has_end_date) {
 			this._el.container.className = 'tl-timemarker tl-timemarker-with-end';
+			this._el.container.setAttribute("aria-selected", "false")
+			this._el.container.setAttribute("tabindex", -1)
 		} else {
 			this._el.container.className = 'tl-timemarker';
+			this._el.container.setAttribute("aria-selected", "false")
+			this._el.container.setAttribute("tabindex", -1)
 		}
 
         this._el.container.ariaLabel = this.ariaLabel;
@@ -265,11 +273,16 @@ export class TimeMarker {
 	================================================== */
 	_initLayout() {
 		// Create Layout
-		this._el.container = DOM.create("div", "tl-timemarker");
+		this._el.container = DOM.create("button", "tl-timemarker");
         this._el.container.setAttribute('tabindex', '-1');
+		this._el.container.setAttribute('role', 'tab');
 
 		if (this.data.unique_id) {
+			this._el.container.setAttribute('aria-controls', this.data.unique_id);
 			this._el.container.id = this.data.unique_id + "-marker";
+		} else {
+			this._el.container.setAttribute('aria-controls', "title-slide");
+			this._el.container.id = "title-slide" + "-marker";
 		}
 
 		if (this.data.end_date) {
@@ -309,7 +322,7 @@ export class TimeMarker {
 
 		// Text
 		this._el.text = DOM.create("div", "tl-timemarker-text", this._el.content);
-		this._text = DOM.create("h2", "tl-headline", this._el.text);
+		this._text = DOM.create("span", "tl-headline", this._el.text);
 		if (this.data.text.headline && this.data.text.headline != "") {
 			this._text.innerHTML = unlinkify(this.data.text.headline);
 		} else if (this.data.text.text && this.data.text.text != "") {

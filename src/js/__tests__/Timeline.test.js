@@ -47,7 +47,7 @@ const TEST_CONFIG = {
 beforeEach(() => {
     // Set up our document body
     document.body.innerHTML =
-        '<div id="timeline-embed"></div>';
+        '<section id="timeline-embed"></section>';
 })
 
 // Full timeline configuration is asynchronous, so these tests need
@@ -79,9 +79,9 @@ test("test remove", async() => {
     })
 
     expect(timeline.config).toBeDefined()
-    expect(timeline.config.events.length).toBe(2)
+    expect(timeline.config.events.length).toBe(3)
     expect(timeline.config.event_dict['vimeo']).toBeTruthy()
     timeline.removeId('vimeo')
-    expect(timeline.config.events.length).toBe(1)
+    expect(timeline.config.events.length).toBe(2)
     expect(timeline.config.event_dict['vimeo']).toBeFalsy()
 })
