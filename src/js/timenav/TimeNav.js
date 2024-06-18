@@ -599,8 +599,13 @@ export class TimeNav {
 
     _onMarkerClick(e) {
         // Go to the clicked marker
-        this.goToId(e.unique_id);
-        this.fire("change", { unique_id: e.unique_id });
+        if (e.unique_id) {
+            this.goToId(e.unique_id);
+            this.fire("change", { unique_id: e.unique_id });
+        } else {
+            this.goToId("title-slide-marker");
+            this.fire("change", { unique_id: "title-slide-marker" });
+        }
     }
 
     _onMarkerBlur(e) {
