@@ -16,5 +16,5 @@ codekit-config.json
 build/website
 build
 *.log
-dist
+# dist
 .vscode
